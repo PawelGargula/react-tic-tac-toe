@@ -52,8 +52,8 @@ ul {
 }
 
 /* Coordinates */
-.board-row:first-child > button::after,
-.board-row > button:first-child::before {
+.board-row:first-child>button::after,
+.board-row>button:first-child::before {
   font-size: 0.5em;
   height: 100%;
   position: absolute;
@@ -61,29 +61,29 @@ ul {
 }
 
 /* Column's coordinates */
-.board-row:first-child > button::after {
+.board-row:first-child>button::after {
   left: 0;
   top: -85%;
 }
 
 /* Row's coordinates */
-.board-row > button:first-child::before {
+.board-row>button:first-child::before {
   left: -85%;
   top: 0;
 }
 
 /* Coordinates' numbers */
-.board-row:first-child > button:first-child::after,
-.board-row:first-child > button:first-child::before {
+.board-row:first-child>button:first-child::after,
+.board-row:first-child>button:first-child::before {
   content: "1";
 }
 
-.board-row:first-child > button:nth-child(2)::after,
-.board-row:nth-child(2) > button:first-child::before {
+.board-row:first-child>button:nth-child(2)::after,
+.board-row:nth-child(2)>button:first-child::before {
   content: "2";
 }
 
-.board-row:first-child > button:nth-child(3)::after,
-.board-row:nth-child(3) > button:first-child::before {
+.board-row:first-child>button:nth-child(3)::after,
+.board-row:nth-child(3)>button:first-child::before {
   content: "3";
 }
