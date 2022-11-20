@@ -87,3 +87,8 @@ ul {
 .board-row:nth-child(3)>button:first-child::before {
   content: "3";
 }
+
+/* Bold the currently selected item in the move list. */
+ol>li>button:focus {
+  font-weight: bold;
+}
