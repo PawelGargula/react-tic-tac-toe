@@ -92,3 +92,7 @@ ul {
 ol>li>button:focus {
   font-weight: bold;
 }
+
+.sort-button {
+  margin-top: 10px;
+}

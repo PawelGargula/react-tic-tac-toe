@@ -13,6 +13,17 @@ function Square(props) {
     );
 }
 
+function SortButton(props) {
+    return (
+        <button
+            className="sort-button"
+            onClick={props.onClick}
+        >
+            Toggle sort
+        </button>
+    )
+}
+
 class Board extends React.Component {
     renderSquare(i) {
         return (
@@ -26,16 +37,14 @@ class Board extends React.Component {
 
     render() {
         let index = -1;
-        let squares = Array(3).fill(null).map((el, i) => {
-            return (
-                <div className="board-row" key={i}>
-                    {Array(3).fill(null).map(() => {
-                        index++;
-                        return (this.renderSquare(index));
-                    })}
-                </div>
-            )
-        });
+        let squares = Array(3).fill(null).map((el, i) => (
+            <div className="board-row" key={i}>
+                {Array(3).fill(null).map(() => {
+                    index++;
+                    return (this.renderSquare(index));
+                })}
+            </div>
+        ));
 
         return (
             <div>
@@ -55,6 +64,7 @@ class Game extends React.Component {
             }],
             stepNumber: 0,
             xIsNext: true,
+            sortAscending: true
         };
     }
 
@@ -88,12 +98,18 @@ class Game extends React.Component {
         });
     }
 
+    toggleSort() {
+        this.setState({
+            sortAscending: !this.state.sortAscending
+        });
+    }
+
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
 
-        const moves = history.map((step, move) => {
+        let moves = history.map((step, move) => {
             const desc = move ? `Go to move #${move} ${step.XYPosition}` : 'Go to start game';
             return (
                 <li key={move}>
@@ -101,6 +117,10 @@ class Game extends React.Component {
                 </li>
             );
         });
+
+        if (!this.state.sortAscending) {
+            moves.reverse();
+        }
 
         let status;
         if (winner) {
@@ -119,6 +139,7 @@ class Game extends React.Component {
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
+                    <SortButton onClick={() => this.toggleSort()}></SortButton>
                     <ol>{moves}</ol>
                 </div>
             </div>
@@ -162,16 +183,7 @@ function calcXPosision(i) {
 }
 
 function calcYPosition(i) {
-    // i / 3 + 1
-    let yPosition = 0;
-
-    if (i < 3) {
-        yPosition = 1;
-    } else if (i < 6) {
-        yPosition = 2;
-    } else {
-        yPosition = 3;
-    }
+    let yPosition = Math.floor(i / 3) + 1;
 
     return yPosition;
 }
