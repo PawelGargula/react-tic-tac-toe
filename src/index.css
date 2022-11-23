@@ -96,3 +96,7 @@ ol>li>button:focus {
 .sort-button {
   margin-top: 10px;
 }
+
+.winner-bgc {
+  background-color: lightgreen;
+}
