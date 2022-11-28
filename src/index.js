@@ -87,14 +87,14 @@ class Game extends React.Component {
 
         XYposition = `(${calcXPosision(i)}, ${calcYPosition(i)})`;
 
-        this.setState({
+        this.setState((state) => ({
             history: history.concat([{
                 squares: squares,
                 XYPosition: XYposition
             }]),
             stepNumber: history.length,
-            xIsNext: !this.state.xIsNext,
-        });
+            xIsNext: !state.xIsNext
+        }));
     }
 
     jumpTo(step) {
@@ -105,9 +105,9 @@ class Game extends React.Component {
     }
 
     toggleSort() {
-        this.setState({
-            sortAscending: !this.state.sortAscending
-        });
+        this.setState((state) => ({
+            sortAscending: !state.sortAscending
+        }));
     }
 
     render() {
